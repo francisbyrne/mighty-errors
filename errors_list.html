@@ -1,0 +1,14 @@
+<template name="mightyErrors">
+  <ul class="error-list">
+  {{#each errors}}
+    {{> mightyError}}
+  {{/each}}
+  </ul>
+</template>
+
+<template name="mightyError">
+  <li class="error-message">
+    <button type="button" class="close">&times;</button>
+    {{{message}}}
+  </li>
+</template>
