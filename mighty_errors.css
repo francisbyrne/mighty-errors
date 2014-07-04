@@ -1,6 +1,6 @@
-.mighty-errors.default-style {
-  padding: 0;
+.mighty-errors.default-style ul {
   font-family: 'Helvetica', serif;
+  padding: 0;
 }
 .mighty-errors.default-style li {
   list-style: none;
