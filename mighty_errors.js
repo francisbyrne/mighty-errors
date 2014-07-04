@@ -7,7 +7,7 @@ MightyErrors = function(options) {
   self.collection = new Meteor.Collection(null);
 };
 
-MightyErrors.prototype = {
+_.extend(MightyErrors.prototype, {
   configure: function(options) {
     var self = this;
     options = options || {};
@@ -44,6 +44,6 @@ MightyErrors.prototype = {
   throw: function(message) {
     return this.collection.insert({message: message, seen: false})
   }
-};
+});
 
 Errors = new MightyErrors;

@@ -95,7 +95,7 @@ Tinytest.addAsync("Errors template", function(test, done) {
     $('.mighty-errors').remove();
 
     done();
-  }, 500);
+  }, 200);
 });
 
 Tinytest.addAsync("Displaying Default Styles", function(test, done) {  
@@ -108,11 +108,57 @@ Tinytest.addAsync("Displaying Default Styles", function(test, done) {
   Meteor.setTimeout(function() {
     
     // Test that the close button is positioned absolutely
-    test.equal( $('.mighty-errors.default-style button.close').css('position'), 'absolute' );
+    test.equal( $('.mighty-errors button.close').css('position'), 'absolute' );
 
-    // Remove inserted template
+    Errors.configure({'styleDisabled': true});
+
+    // Manually re-render the template (because the options variable is non-reactive)
     $('.mighty-errors').remove();
+    UI.insert(UI.render(Template.mightyErrors), document.body);
 
-    done();
-  }, 500);
+    // Wait a few more milliseconds
+    Meteor.setTimeout(function() {
+
+      // It should now be statically positioned, as per standard browser behaviour
+      test.equal( $('.mighty-errors button.close').css('position'), 'static' );
+
+      // Remove inserted template
+      $('.mighty-errors').remove();
+
+      done();
+    }, 200);
+
+  }, 200);
+});
+
+Tinytest.addAsync("Displaying 'Clear All' button", function(test, done) { 
+
+  // Render the template
+  UI.insert(UI.render(Template.mightyErrors), document.body);
+
+  // Wait a few milliseconds
+  Meteor.setTimeout(function() {
+    
+    // Clear button does not exist by default
+    test.equal( $('.mighty-errors .clearAll').length, 0 );
+
+    Errors.configure({'clearAllEnabled': true});
+
+    // Manually re-render the template (because the options variable is non-reactive)
+    $('.mighty-errors').remove();
+    UI.insert(UI.render(Template.mightyErrors), document.body);
+
+    // Wait a few more milliseconds
+    Meteor.setTimeout(function() {
+
+      // It should now exist
+      test.equal( $('.mighty-errors .clear-all').length, 1 );
+
+      // Remove inserted template
+      $('.mighty-errors').remove();
+
+      done();
+    }, 200);
+
+  }, 200);
 });

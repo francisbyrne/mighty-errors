@@ -1,5 +1,8 @@
 // Error Message List
 Template.mightyErrors.helpers({
+  clearAllEnabled: function() {
+    return Errors.options && Errors.options.clearAllEnabled;
+  },
   errors: function() {
     return Errors.get();
   },

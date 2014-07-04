@@ -21,3 +21,5 @@ Methods
 Options
 ------
 - **styleEnabled** - (default: true) Default CSS styles are enabled.
+
+Note: `Errors.options` is non-reactive, so changes will not re-render the template
