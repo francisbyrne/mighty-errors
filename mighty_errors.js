@@ -7,7 +7,7 @@ MightyErrors = function(options) {
   self.collection = new Meteor.Collection(null);
 };
 
-_.extend(MightyErrors.prototype, {
+_.extend( MightyErrors.prototype, {
   configure: function(options) {
     var self = this;
     options = options || {};
@@ -26,7 +26,7 @@ _.extend(MightyErrors.prototype, {
     this.collection.remove(id);
   },
   get: function(id) {
-    return id ? this.collection.find(id) : this.collection.find();
+    return id ? this.collection.findOne(id) : this.collection.find();
   },
   getUnseen: function() {
     return this.collection.find({seen: false});
@@ -43,6 +43,15 @@ _.extend(MightyErrors.prototype, {
   },
   throw: function(message) {
     return this.collection.insert({message: message, seen: false})
+  },
+  // Throws a list of errors with an optional pre-message, useful for e.g. data tables
+  throwList: function(list, preMessage) {
+    var message = preMessage + '<ul>';
+    message += _.reduce(list, function(memo, item) {
+      return memo + '<li>' + item + '</li>';
+    }, '');
+    message += '</ul>';
+    return this.throw(message);
   }
 });
 

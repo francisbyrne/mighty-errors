@@ -16,6 +16,21 @@ Tinytest.add("Throwing an error", function(test) {
   Errors.collection.remove({});
 });
 
+Tinytest.add("Throwing an error list", function(test) {
+  test.equal(Errors.get().count(), 0);
+
+  var list = [
+    'first error',
+    'second error',
+    'third error'
+  ];
+  
+  var errorId = Errors.throwList(list, 'here is a list:');
+  test.equal(Errors.get(errorId).message, 'here is a list:<ul><li>first error</li><li>second error</li><li>third error</li></ul>');
+  
+  Errors.collection.remove({});
+});
+
 Tinytest.add("Clear one error", function(test) {
   test.equal(Errors.get().count(), 0);
   
@@ -27,8 +42,8 @@ Tinytest.add("Clear one error", function(test) {
   Errors.clearOne(second);
 
   test.equal(Errors.get().count(), 1);
-  test.equal(Errors.get(first).count(), 1);
-  test.equal(Errors.get(second).count(), 0);
+  test.equal(Errors.get(first).message, 'First Error' );
+  test.isUndefined( Errors.get(second) );
   
   Errors.collection.remove({});
 });
