@@ -1,6 +1,6 @@
 {
   "name": "mighty-errors",
-  "description": "A pattern to display application errors to the user",
+  "description": "A mighty Meteor package for displaying errors to users",
   "homepage": "https://github.com/francisbyrne/mighty-errors",
   "author": "Francis Byrne <byrnify@gmail.com>",
   "version": "0.0.1",

@@ -1,0 +1,31 @@
+.mighty-errors-styled {
+  padding: 0;
+  font-family: 'Helvetica', serif;
+}
+.mighty-errors-styled li {
+  list-style: none;
+}
+.mighty-errors-styled .error-message {
+  position: relative;
+  border: 1px solid #BD4652;
+  background-color: #FFB5B5;
+  color: #BD4652;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+}
+.mighty-errors-styled button.close {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  color: #BD4652;
+  font-size: 1em;
+  background: none;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.mighty-errors-styled button.close:hover {
+  cursor: pointer;
+  color: #DA6D78;
+}

@@ -1,6 +1,9 @@
 Template.mightyErrors.helpers({
   errors: function() {
-    return Errors.collection.find();
+    return Errors.get();
+  },
+  styleClass: function() {
+    return Errors.styleEnabled() ? 'mighty-errors-styled' : '';
   }
 });
 
