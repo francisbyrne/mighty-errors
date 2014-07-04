@@ -1,9 +1,12 @@
 <template name="mightyErrors">
-  <ul class="error-list {{styleClass}}">
-  {{#each errors}}
-    {{> mightyError}}
-  {{/each}}
-  </ul>
+  <div class="mighty-errors {{styleClass}}">
+    <button class="clear-all">Clear All</button>
+    <ul class="error-list">
+    {{#each errors}}
+      {{> mightyError}}
+    {{/each}}
+    </ul>
+  </div>
 </template>
 
 <template name="mightyError">

@@ -18,15 +18,31 @@ MightyErrors.prototype = {
   clearSeen: function() {
     this.collection.remove({seen: true});
   },
-  get: function() {
-    return this.collection.find();
+  clearAll: function() {
+    this.collection.update({seen: false}, {seen: true}, {multi: true});
+    this.clearSeen();
+  },
+  clearOne: function(id) {
+    this.collection.remove(id);
+  },
+  get: function(id) {
+    return id ? this.collection.find(id) : this.collection.find();
+  },
+  getUnseen: function() {
+    return this.collection.find({seen: false});
+  },
+  restoreDefaults: function() {
+    this.options = {};
+  },
+  setSeen: function(id) {
+    this.collection.update(id, {$set: {seen: true}});
   },
   // Default styling for error messages, enabled by default
-  styleEnabled: function() {
-    return this.options && this.options.styleEnabled || true;
+  styleDisabled: function() {
+    return !! ( this.options && this.options.styleDisabled );
   },
   throw: function(message) {
-    this.collection.insert({message: message, seen: false})
+    return this.collection.insert({message: message, seen: false})
   }
 };
 
