@@ -197,3 +197,35 @@ Tinytest.addAsync("Displaying 'Clear All' button", function(test, done) {
 
   }, 200);
 });
+
+Tinytest.addAsync("Hiding 'Dismiss Error' button", function(test, done) { 
+
+  // Render the template
+  UI.insert(UI.render(Template.mightyErrors), document.body);
+
+  // Wait a few milliseconds
+  Meteor.setTimeout(function() {
+    
+    // Clear button does not exist by default
+    test.equal( $('.mighty-errors button.close').length, 1 );
+
+    Errors.configure({'noDismiss': true});
+
+    // Manually re-render the template (because the options variable is non-reactive)
+    $('.mighty-errors').remove();
+    UI.insert(UI.render(Template.mightyErrors), document.body);
+
+    // Wait a few more milliseconds
+    Meteor.setTimeout(function() {
+
+      // It should now exist
+      test.equal( $('.mighty-errors button.close').length, 0 );
+
+      // Remove inserted template
+      $('.mighty-errors').remove();
+
+      done();
+    }, 200);
+
+  }, 200);
+});

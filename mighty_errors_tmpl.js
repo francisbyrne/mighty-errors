@@ -19,6 +19,12 @@ Template.mightyErrors.events({
 
 
 // Single Error Message Template
+Template.mightyError.helpers({
+  noDismiss: function() {
+    return Errors.options && Errors.options.noDismiss;
+  }
+});
+
 Template.mightyError.rendered = function() {
   var error = this.data;
   Meteor.defer(function() {

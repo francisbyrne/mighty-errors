@@ -13,7 +13,7 @@
 
 <template name="mightyError">
   <li class="error-message">
-    <button type="button" class="close">&times;</button>
+    {{#unless noDismiss}}<button type="button" class="close">&times;</button>{{/unless}}
     {{{message}}}
   </li>
 </template>
