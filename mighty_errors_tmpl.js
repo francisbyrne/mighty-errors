@@ -4,7 +4,7 @@ Template.mightyErrors.helpers({
     return Errors.options && Errors.options.clearAllEnabled;
   },
   errors: function() {
-    return Errors.get();
+    return Errors.get().fetch();
   },
   styleClass: function() {
     return Errors.styleDisabled() ? '': 'default-style';

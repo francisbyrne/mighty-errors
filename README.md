@@ -1,4 +1,4 @@
-mighty-errors
+Mighty Errors
 =============
 
 A mighty Meteor package for displaying errors to users

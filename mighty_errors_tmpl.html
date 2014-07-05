@@ -1,4 +1,5 @@
 <template name="mightyErrors">
+  {{#if errors}}
   <div class="mighty-errors {{styleClass}}">
     {{#if clearAllEnabled}}<button class="clear-all">Clear All</button>{{/if}}
     <ul class="error-list">
@@ -7,6 +8,7 @@
     {{/each}}
     </ul>
   </div>
+  {{/if}}
 </template>
 
 <template name="mightyError">
