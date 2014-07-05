@@ -42,6 +42,9 @@ _.extend( MightyErrors.prototype, {
     return !! ( this.options && this.options.styleDisabled );
   },
   throw: function(message) {
+    if ( this.options && this.options.ignoreRepeats && this.collection.find({'message': message}).count() > 0 )
+      return;
+    
     return this.collection.insert({message: message, seen: false})
   },
   // Throws a list of errors with an optional pre-message, useful for e.g. data tables

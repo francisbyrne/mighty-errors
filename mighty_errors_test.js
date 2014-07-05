@@ -31,6 +31,26 @@ Tinytest.add("Throwing an error list", function(test) {
   Errors.collection.remove({});
 });
 
+Tinytest.add("Ignoring a repeated error", function(test) {
+  // First check repeated errors can be thrown
+  Errors.throw('An error');
+  Errors.throw('An error');
+
+  test.equal(Errors.get().count(), 2);
+
+  Errors.collection.remove({});
+
+  // Now set the option and check that repeats are ignored
+  Errors.configure({'ignoreRepeats': true});
+
+  Errors.throw('An error');
+  Errors.throw('An error');
+
+  test.equal(Errors.get().count(), 1);
+
+  Errors.collection.remove({});
+});
+
 Tinytest.add("Clear one error", function(test) {
   test.equal(Errors.get().count(), 0);
   
