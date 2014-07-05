@@ -3,6 +3,6 @@
   "description": "A mighty Meteor package for displaying errors to users",
   "homepage": "https://github.com/francisbyrne/mighty-errors",
   "author": "Francis Byrne <byrnify@gmail.com>",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "git": "https://github.com/francisbyrne/mighty-errors.git"
 }
