@@ -42,6 +42,7 @@ Options
 ------
 - `clearAllEnabled` - (default: false) Set to `true` in order to add a button to the template that clears all errors
 - `ignoreRepeats` - (default: false) Set to `true` to ignore repeated errors; errors with the same `message` will not be added to the collection
+- `noDismiss` - (default: false) Set to `true` in order to disable the dismiss/close error message button
 - `styleDisabled` - (default: false) Set to `true` in order to disable the default CSS styles. Note: the css file will still load but the `default-style` class will not be appended to the error container so the styles won't be applied
 
 Note: `Errors.options` is currently non-reactive, so changes will not re-render the template

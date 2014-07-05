@@ -11,6 +11,7 @@ _.extend( MightyErrors.prototype, {
   configure: function(options) {
     var self = this;
     options = options || {};
+    // Only override passed options, don't reset this.options
     self.options = self.options || {};
     _.extend(self.options, options);
     return self;
@@ -42,9 +43,10 @@ _.extend( MightyErrors.prototype, {
     return !! ( this.options && this.options.styleDisabled );
   },
   throw: function(message) {
+    // Ignore repeated errors if option is enabled
     if ( this.options && this.options.ignoreRepeats && this.collection.find({'message': message}).count() > 0 )
       return;
-    
+
     return this.collection.insert({message: message, seen: false})
   },
   // Throws a list of errors with an optional pre-message, useful for e.g. data tables
